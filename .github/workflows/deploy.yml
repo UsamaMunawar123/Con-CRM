@@ -1,0 +1,26 @@
+name: Deploy to Local IIS
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: [self-hosted, local-iis]
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Deploy to IIS
+        shell: powershell
+        run: |
+          $dest = "C:\inetpub\wwwroot\Con-CRM"
+          New-Item -ItemType Directory -Force -Path $dest | Out-Null
+          Copy-Item -Path ".\index.html" -Destination $dest -Force
+          Copy-Item -Path ".\*.jsx" -Destination $dest -Force
+          if (Test-Path ".\screenshots") {
+            Copy-Item -Path ".\screenshots" -Destination $dest -Recurse -Force
+          }
+          Write-Host "Deployed successfully to $dest"
