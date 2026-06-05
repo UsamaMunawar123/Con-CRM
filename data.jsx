@@ -187,8 +187,75 @@ const PORTFOLIO = {
   inventory: PROJECTS.reduce((a,p)=>a+p.inventoryValue,0),
 };
 
+// ---- customers & payment ledger ----
+let _cid=0;
+const MOS=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+function mkLedgerDate(offset){
+  const abs=5+offset+120;
+  return MOS[abs%12]+' '+(2025+Math.floor(abs/12)-10);
+}
+function makeCustomerLedger(price,moElapsed){
+  const plan=makePlan(price);
+  const rows=[];
+  rows.push({id:'ld'+(++_cid),label:'Down Payment (20%)',amount:plan.down,due:'On Booking',paid:true,paidOn:'On Booking',overdue:false,type:'down'});
+  for(let i=0;i<plan.installments;i++){
+    const mo=i+1, due=mkLedgerDate(i), paid=mo<moElapsed, overdue=!paid&&mo<=moElapsed;
+    rows.push({id:'li'+_cid+i,label:'Installment #'+mo,amount:plan.monthly,due,paid,paidOn:paid?due:null,overdue,type:'installment'});
+  }
+  rows.push({id:'lb'+_cid,label:'Balloon Payment (Yr 2)',amount:plan.balloon,due:'Jun 2027',paid:moElapsed>24,paidOn:moElapsed>24?'Jun 2027':null,overdue:false,type:'balloon'});
+  rows.push({id:'lp'+_cid,label:'On Possession (15%)',amount:plan.onPossession,due:'Dec 2027',paid:false,paidOn:null,overdue:false,type:'possession'});
+  return rows;
+}
+function buildCustomers(){
+  const map={};
+  PROJECTS.forEach(p=>{
+    p.units.forEach(u=>{
+      if(!u.customer) return;
+      if(!map[u.customer]){
+        const first=u.customer.split(' ')[0].toLowerCase();
+        map[u.customer]={
+          id:'C'+(++_cid),name:u.customer,
+          phone:'03'+Math.floor(10+Math.random()*89)+'-'+Math.floor(1000000+Math.random()*8999999),
+          cnic:'3520'+Math.floor(1+Math.random()*9)+'-'+Math.floor(1000000+Math.random()*8999999)+'-'+Math.floor(1+Math.random()*8),
+          email:first+Math.floor(10+Math.random()*89)+'@gmail.com',
+          since:'2025',units:[],
+        };
+      }
+      const mo=u.status==='sold'?18:u.status==='booked'?8:2;
+      map[u.customer].units.push({
+        unitId:u.id,unitCode:u.code,unitObj:u,
+        projectId:p.id,projectName:p.name,projectCode:p.code,
+        status:u.status,price:u.price,floor:u.floor,typeName:u.typeName,area:u.area,
+        ledger:makeCustomerLedger(u.price,mo),
+      });
+    });
+  });
+  return Object.values(map);
+}
+const CUSTOMERS=buildCustomers();
+
+function bookUnit(unit,project,formData){
+  let cust=CUSTOMERS.find(c=>formData.cnic&&c.cnic===formData.cnic)||CUSTOMERS.find(c=>c.name===formData.name);
+  if(!cust){
+    cust={id:'C'+(++_cid),name:formData.name,phone:formData.phone||'',cnic:formData.cnic||'',email:formData.email||'',since:'2026',units:[]};
+    CUSTOMERS.push(cust);
+  }
+  const prev=unit.status;
+  unit.status='token'; unit.customer=formData.name;
+  project.counts[prev]=Math.max(0,(project.counts[prev]||0)-1);
+  project.counts.token=(project.counts.token||0)+1;
+  cust.units.push({
+    unitId:unit.id,unitCode:unit.code,unitObj:unit,
+    projectId:project.id,projectName:project.name,projectCode:project.code,
+    status:'token',price:unit.price,floor:unit.floor,typeName:unit.typeName,area:unit.area,
+    ledger:makeCustomerLedger(unit.price,0),
+  });
+  return cust;
+}
+
 Object.assign(window, {
   fmtPKR, fmtShort, STATUS, STATUS_ORDER, PROJECTS, makePlan,
   ROLES, MODULES, ACTIONS, PERMS, USERS,
   EXP_CATEGORIES, EXPENSES, EXP_TOTAL, EXP_BUDGET, PORTFOLIO, UNIT_TYPES,
+  CUSTOMERS, bookUnit,
 });

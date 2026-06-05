@@ -5,6 +5,8 @@ const TITLES={
   projects:['Projects','Project POS'],
   project:['Project','Project POS'],
   'add-project':['Add Project','Project POS'],
+  customers:['Customers','Sales CRM'],
+  customer:['Customer','Sales CRM'],
   users:['Users','User Management'],
   roles:['Roles','User Management'],
   permissions:['Permissions','User Management'],
@@ -73,6 +75,8 @@ function App(){
     case 'users': screen=<UsersScreen go={go}/>; break;
     case 'roles': screen=<RolesScreen go={go}/>; break;
     case 'permissions': screen=<PermissionsScreen go={go} role={route.params.role}/>; break;
+    case 'customers': screen=<CustomersScreen go={go}/>; break;
+    case 'customer': screen=<CustomerDetailScreen id={route.params.id} go={go}/>; break;
     case 'expenses': screen=<ExpensesScreen go={go}/>; break;
     case 'expense-cats': screen=<ExpenseCategoriesScreen go={go}/>; break;
     default: screen=<DashboardScreen go={go}/>;

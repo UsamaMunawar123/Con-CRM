@@ -5,6 +5,9 @@ const NAV_SECTIONS = [
     {id:'dashboard', label:'Dashboard', icon:'grid'},
     {id:'projects', label:'Projects', icon:'building', badge:'POS'},
   ]},
+  {title:'Sales', items:[
+    {id:'customers', label:'Customers', icon:'users'},
+  ]},
   {title:'User Management', items:[
     {id:'users', label:'Users', icon:'users'},
     {id:'roles', label:'Roles', icon:'shield'},
@@ -108,7 +111,7 @@ function Sidebar({route, go, navStyle, setNavStyle}){
             <div style={{display:'flex',flexDirection:'column',gap:3}}>
               {sec.items.map(it=>(
                 <NavItem key={it.id} item={it} navStyle={navStyle}
-                  active={route.screen===it.id || (it.id==='projects'&&['projects','project','add-project'].includes(route.screen)) || (it.id==='expenses'&&route.screen==='expenses')}
+                  active={route.screen===it.id || (it.id==='projects'&&['projects','project','add-project'].includes(route.screen)) || (it.id==='customers'&&['customers','customer'].includes(route.screen)) || (it.id==='expenses'&&route.screen==='expenses')}
                   onClick={()=>go(it.id)}/>
               ))}
             </div>

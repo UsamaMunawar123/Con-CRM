@@ -9,41 +9,41 @@
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=IBM+Plex+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
 <style>
 :root{
-  /* base surfaces */
-  --bg:#0b0e14;
-  --bg-2:#0e1219;
-  --surface:#141925;
-  --surface-2:#1a2030;
-  --surface-3:#222a3d;
-  --raised:#1d2333;
+  /* base surfaces — light purple / white */
+  --bg:#f5f2ff;
+  --bg-2:#ede8fb;
+  --surface:#ffffff;
+  --surface-2:#f5f2ff;
+  --surface-3:#ebe5fb;
+  --raised:#ffffff;
   /* borders */
-  --line:#262d3f;
-  --line-2:#313a52;
-  --line-soft:#1c2231;
+  --line:#ddd5f8;
+  --line-2:#c4b5f5;
+  --line-soft:#e8e1fb;
   /* text */
-  --text:#e7ecf5;
-  --text-2:#aeb8cc;
-  --text-3:#7682a0;
-  --text-4:#56607b;
-  /* accent */
-  --accent:#3b82f6;
-  --accent-2:#2f6fe0;
-  --accent-soft:rgba(59,130,246,.14);
-  --accent-line:rgba(59,130,246,.4);
+  --text:#1e1040;
+  --text-2:#4a3d7a;
+  --text-3:#7b6fa8;
+  --text-4:#a99abe;
+  /* accent — purple */
+  --accent:#7c3aed;
+  --accent-2:#6d28d9;
+  --accent-soft:rgba(124,58,237,.1);
+  --accent-line:rgba(124,58,237,.32);
   /* status */
-  --open:#34d399;        --open-bg:rgba(52,211,153,.13);    --open-line:rgba(52,211,153,.38);
-  --booked:#fbbf24;      --booked-bg:rgba(251,191,36,.13);  --booked-line:rgba(251,191,36,.38);
-  --token:#a78bfa;       --token-bg:rgba(167,139,250,.14);  --token-line:rgba(167,139,250,.4);
-  --sold:#fb7185;        --sold-bg:rgba(251,113,133,.13);   --sold-line:rgba(251,113,133,.38);
-  --blocked:#64748b;     --blocked-bg:rgba(100,116,139,.14);--blocked-line:rgba(100,116,139,.4);
+  --open:#059669;        --open-bg:rgba(5,150,105,.1);      --open-line:rgba(5,150,105,.3);
+  --booked:#d97706;      --booked-bg:rgba(217,119,6,.1);    --booked-line:rgba(217,119,6,.3);
+  --token:#7c3aed;       --token-bg:rgba(124,58,237,.1);    --token-line:rgba(124,58,237,.3);
+  --sold:#dc2626;        --sold-bg:rgba(220,38,38,.1);      --sold-line:rgba(220,38,38,.3);
+  --blocked:#6b7280;     --blocked-bg:rgba(107,114,128,.1); --blocked-line:rgba(107,114,128,.3);
   /* fonts */
   --f-display:'Space Grotesk',system-ui,sans-serif;
   --f-ui:'IBM Plex Sans',system-ui,sans-serif;
   --f-mono:'JetBrains Mono',ui-monospace,monospace;
   /* radius */
   --r-sm:7px; --r:10px; --r-lg:14px; --r-xl:20px;
-  --shadow:0 1px 2px rgba(0,0,0,.4),0 8px 24px rgba(0,0,0,.28);
-  --shadow-lg:0 24px 60px rgba(0,0,0,.5);
+  --shadow:0 1px 3px rgba(109,40,217,.06),0 6px 18px rgba(109,40,217,.08);
+  --shadow-lg:0 12px 40px rgba(109,40,217,.14),0 24px 60px rgba(109,40,217,.08);
   --nav-w:248px;
   --nav-w-compact:76px;
 }
@@ -62,7 +62,7 @@ body{
 ::-webkit-scrollbar{width:10px;height:10px;}
 ::-webkit-scrollbar-track{background:transparent;}
 ::-webkit-scrollbar-thumb{background:var(--line-2);border-radius:20px;border:2px solid var(--bg);}
-::-webkit-scrollbar-thumb:hover{background:#3c4866;}
+::-webkit-scrollbar-thumb:hover{background:var(--accent-line);}
 button{font-family:inherit;cursor:pointer;border:none;background:none;color:inherit;}
 input,select,textarea{font-family:inherit;font-size:inherit;color:inherit;}
 h1,h2,h3,h4{margin:0;font-family:var(--f-display);font-weight:600;letter-spacing:-.01em;}
@@ -100,6 +100,7 @@ a{color:inherit;text-decoration:none;}
 <script type="text/babel" src="screens_addproject.jsx"></script>
 <script type="text/babel" src="screens_users.jsx"></script>
 <script type="text/babel" src="screens_expenses.jsx"></script>
+<script type="text/babel" src="screens_customers.jsx"></script>
 <script type="text/babel" src="app.jsx"></script>
 </body>
 </html>
