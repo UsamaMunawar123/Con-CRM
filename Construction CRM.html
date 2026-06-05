@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Construction CRM</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=IBM+Plex+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+<style>
+:root{
+  /* base surfaces */
+  --bg:#0b0e14;
+  --bg-2:#0e1219;
+  --surface:#141925;
+  --surface-2:#1a2030;
+  --surface-3:#222a3d;
+  --raised:#1d2333;
+  /* borders */
+  --line:#262d3f;
+  --line-2:#313a52;
+  --line-soft:#1c2231;
+  /* text */
+  --text:#e7ecf5;
+  --text-2:#aeb8cc;
+  --text-3:#7682a0;
+  --text-4:#56607b;
+  /* accent */
+  --accent:#3b82f6;
+  --accent-2:#2f6fe0;
+  --accent-soft:rgba(59,130,246,.14);
+  --accent-line:rgba(59,130,246,.4);
+  /* status */
+  --open:#34d399;        --open-bg:rgba(52,211,153,.13);    --open-line:rgba(52,211,153,.38);
+  --booked:#fbbf24;      --booked-bg:rgba(251,191,36,.13);  --booked-line:rgba(251,191,36,.38);
+  --token:#a78bfa;       --token-bg:rgba(167,139,250,.14);  --token-line:rgba(167,139,250,.4);
+  --sold:#fb7185;        --sold-bg:rgba(251,113,133,.13);   --sold-line:rgba(251,113,133,.38);
+  --blocked:#64748b;     --blocked-bg:rgba(100,116,139,.14);--blocked-line:rgba(100,116,139,.4);
+  /* fonts */
+  --f-display:'Space Grotesk',system-ui,sans-serif;
+  --f-ui:'IBM Plex Sans',system-ui,sans-serif;
+  --f-mono:'JetBrains Mono',ui-monospace,monospace;
+  /* radius */
+  --r-sm:7px; --r:10px; --r-lg:14px; --r-xl:20px;
+  --shadow:0 1px 2px rgba(0,0,0,.4),0 8px 24px rgba(0,0,0,.28);
+  --shadow-lg:0 24px 60px rgba(0,0,0,.5);
+  --nav-w:248px;
+  --nav-w-compact:76px;
+}
+*{box-sizing:border-box;}
+html,body{margin:0;padding:0;height:100%;}
+body{
+  background:var(--bg);
+  color:var(--text);
+  font-family:var(--f-ui);
+  font-size:14px;
+  line-height:1.5;
+  -webkit-font-smoothing:antialiased;
+  text-rendering:optimizeLegibility;
+}
+#root{height:100vh;overflow:hidden;}
+::-webkit-scrollbar{width:10px;height:10px;}
+::-webkit-scrollbar-track{background:transparent;}
+::-webkit-scrollbar-thumb{background:var(--line-2);border-radius:20px;border:2px solid var(--bg);}
+::-webkit-scrollbar-thumb:hover{background:#3c4866;}
+button{font-family:inherit;cursor:pointer;border:none;background:none;color:inherit;}
+input,select,textarea{font-family:inherit;font-size:inherit;color:inherit;}
+h1,h2,h3,h4{margin:0;font-family:var(--f-display);font-weight:600;letter-spacing:-.01em;}
+.mono{font-family:var(--f-mono);font-variant-numeric:tabular-nums;}
+a{color:inherit;text-decoration:none;}
+
+/* utility animations */
+@keyframes fadeUp{from{transform:translateY(10px);}to{transform:none;}}
+@keyframes fadeIn{from{opacity:0;}to{opacity:1;}}
+@keyframes popIn{from{opacity:0;transform:scale(.96);}to{opacity:1;transform:none;}}
+@keyframes slideIn{from{opacity:0;transform:translateX(14px);}to{opacity:1;transform:none;}}
+@keyframes sheetIn{from{opacity:0;transform:translateX(40px);}to{opacity:1;transform:none;}}
+.fade-up{animation:fadeUp .45s cubic-bezier(.16,1,.3,1);}
+.fade-in{animation:fadeIn .3s ease;}
+
+/* focus */
+:focus-visible{outline:2px solid var(--accent);outline-offset:2px;}
+
+/* selection */
+::selection{background:var(--accent-soft);color:#fff;}
+</style>
+</head>
+<body>
+<div id="root"></div>
+
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+
+<script type="text/babel" src="data.jsx"></script>
+<script type="text/babel" src="components.jsx"></script>
+<script type="text/babel" src="nav.jsx"></script>
+<script type="text/babel" src="screens_dashboard.jsx"></script>
+<script type="text/babel" src="screens_projects.jsx"></script>
+<script type="text/babel" src="screens_addproject.jsx"></script>
+<script type="text/babel" src="screens_users.jsx"></script>
+<script type="text/babel" src="screens_expenses.jsx"></script>
+<script type="text/babel" src="app.jsx"></script>
+</body>
+</html>

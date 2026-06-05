@@ -1,0 +1,1 @@
+lastPostDate comes from the database as a plain object, and its type just depends on how the column is stored in SQL  datetimeoffset shows up as DateTimeOffset, datetime shows up as DateTime. So we handle both to be safe.
