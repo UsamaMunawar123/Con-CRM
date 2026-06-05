@@ -28,7 +28,7 @@ function Brand({compact}){
       {!compact &&
         <div style={{lineHeight:1.1}}>
           <div style={{fontFamily:'var(--f-display)',fontWeight:700,fontSize:16,letterSpacing:'-.01em'}}>Horizon<span style={{color:'var(--accent)'}}>Build</span></div>
-          <div style={{fontSize:10.5,color:'var(--text-4)',fontWeight:600,letterSpacing:'.1em',textTransform:'uppercase',marginTop:1}}>Construction CRM</div>
+          <div style={{fontSize:10.5,color:'var(--text-4)',fontWeight:600,letterSpacing:'.1em',textTransform:'uppercase',marginTop:1}}>Construction CRM 1.1</div>
         </div>}
     </div>
   );
